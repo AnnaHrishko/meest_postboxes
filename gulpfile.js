@@ -2,8 +2,6 @@
 var browserSync      = require('browser-sync').create();
 
 var gulp = require('gulp');
-var prefix = require('gulp-autoprefixer');
-// var autoprefixer = require("autoprefixer");
 const cleanCSS = require('gulp-clean-css');
 const minify = require('gulp-minify');
 const include = require('gulp-include')
@@ -25,9 +23,6 @@ gulp.task('browser-sync', function(done) {
   done()
 }); 
 
-
-
-
 gulp.task('scripts', function() {
     return gulp.src([ // Берем все необходимые библиотеки
       'dev/js/**/*.js'
@@ -40,37 +35,26 @@ gulp.task('scripts', function() {
        done()
   });
 
-// gulp.task('sass', function(){
-//     return gulp.src('dev/css/**/*.scss') // Берем все sass файлы из папки sass и дочерних, если таковые будут
-//       .pipe(sass())
-//       .pipe(gulp.dest('./front/css/'))
-//       .pipe(browserSync.reload({stream: true}));
-
-//        done()
-//   });
-gulp.task('sass', function() {
-  return gulp.src('dev/css/meest_postboxes.scss')
+gulp.task('sass', function(){
+    return gulp.src('dev/css/**/*.scss') // Берем все sass файлы из папки sass и дочерних, если таковые будут
       .pipe(sass())
-      // concat will combine all files declared in your "src"
-      .pipe(concat('meest_postboxes.min.css'))
-      .pipe(cssnano())
-      //.pipe(sassPartialsImported(scss_dir, includePaths))
       .pipe(gulp.dest('./front/css/'))
-      .pipe(browserSync.reload({
-          stream: true
-      }))
-  });
+      .pipe(browserSync.reload({stream: true}));
 
-//   gulp.task('sass', function(){
-//     return gulp.src('dev/css/**/*.scss')
-//         .pipe(sass())
-//         .pipe(prefix('last 2 versions'))
-//         .pipe(minify())
-//         .pipe(gulp.dest('./front/css/'))
-//         // .pipe(plumber({
-//         //     errorHandler: onError
-//         // }))
-// });
+       done()
+  });
+// gulp.task('sass', function() {
+//   return gulp.src('dev/css/meest_postboxes.scss')
+//       .pipe(sass())
+//       // concat will combine all files declared in your "src"
+//       .pipe(concat('meest_postboxes.min.css'))
+//       .pipe(cssnano())
+//       //.pipe(sassPartialsImported(scss_dir, includePaths))
+//       .pipe(gulp.dest('./front/css/'))
+//       .pipe(browserSync.reload({
+//           stream: true
+//       }))
+//   });
 
 // gulp.task('minify', function minifyFunc() {
 //   return gulp.src('dev/css/**/*.scss')
@@ -88,35 +72,6 @@ gulp.task('sass', function() {
   //   .pipe(gulp.dest('./front/css/'));
   // });
 
-// gulp.task('compilescss', function() {
-//   return  gulp.src('dev/css/**/*.scss')
-//         .pipe(sass())
-//         .pipe(prefix())
-//         .pipe(minify())
-//         // .pipe(rename(function (path) {
-//         //     return {
-//         //     dirname: path.css + &quot;&quot;,
-//         //     basename: path.basename + &quot;.min&quot;,
-//         //     extname: &quot;.css&quot;
-//         //     };
-//         // }))
-//         .pipe(dest('./front/css/'))
-// });
-
-
-
-  // gulp.task('css', function(){
-  //   return gulp.src('dev/css/**/*.scss')
-  //     .pipe(cleanCSS({
-  //         compatibility: 'ie8',
-  //         level: {
-  //             1: {
-  //                 specialComments: 0,
-  //             },
-  //         },
-  //     }))
-  //     .pipe(gulp.dest('./front/css/'))
-  //   });
 gulp.task('templates',async function(done) {
   gulp.src('dev/**/*.html')
     .pipe(include())
