@@ -49,10 +49,10 @@ gulp.task('scripts', function() {
 //        done()
 //   });
 gulp.task('sass', function() {
-  return gulp.src('dev/css/main.scss')
+  return gulp.src('dev/css/meest_postboxes.scss')
       .pipe(sass())
       // concat will combine all files declared in your "src"
-      .pipe(concat('main.css'))
+      .pipe(concat('meest_postboxes.min.css'))
       .pipe(cssnano())
       //.pipe(sassPartialsImported(scss_dir, includePaths))
       .pipe(gulp.dest('./front/css/'))
