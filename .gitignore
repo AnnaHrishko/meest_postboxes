@@ -1,0 +1,5 @@
+gulpfile.js
+package.json
+package-lock.json
+**/node_modules/*
+script-min.js
